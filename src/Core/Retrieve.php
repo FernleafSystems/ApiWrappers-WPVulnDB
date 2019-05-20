@@ -6,7 +6,9 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Core;
  * Class Retrieve
  * @package FernleafSystems\ApiWrappers\WpVulnDb\Core
  */
-class Retrieve extends Base {
+class Retrieve extends \FernleafSystems\ApiWrappers\WpVulnDb\Api {
+
+	const ENDPOINT_KEY = 'wordpresses';
 
 	/**
 	 * @return CoreVulnVO|null - retrieve null will mean that that no vulnerabilities were found for that version
@@ -23,6 +25,13 @@ class Retrieve extends Base {
 	 */
 	public function filterByVersion( $sSlug ) {
 		return $this->setParam( 'filter_version', $sSlug );
+	}
+
+	/**
+	 * @return CoreVulnVO
+	 */
+	protected function getVO() {
+		return new CoreVulnVO();
 	}
 
 	/**
