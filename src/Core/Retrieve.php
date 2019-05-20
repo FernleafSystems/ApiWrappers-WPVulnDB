@@ -9,21 +9,12 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Core;
 class Retrieve extends Base {
 
 	/**
-	 * @return CoreVulnVO[]
+	 * @return CoreVulnVO|null - retrieve null will mean that that no vulnerabilities were found for that version
 	 */
 	public function retrieve() {
-		$aVulns = [];
-
-		if ( $this->req()->isLastRequestSuccess() ) {
-			$aVulns = array_map(
-				function ( $aD ) {
-					return $this->getVO()->applyFromArray( $aD );
-				},
-				$this->getDecodedResponseBody()[ $this->getParam( 'version' ) ]
-			);
-		}
-
-		return $aVulns;
+		return $this->req()->isLastRequestSuccess() ?
+			$this->getVO()->applyFromArray( $this->getDecodedResponseBody()[ $this->getParam( 'filter_version' ) ] )
+			: null;
 	}
 
 	/**
@@ -31,13 +22,13 @@ class Retrieve extends Base {
 	 * @return $this
 	 */
 	public function filterByVersion( $sSlug ) {
-		return $this->setParam( 'version', $sSlug );
+		return $this->setParam( 'filter_version', $sSlug );
 	}
 
 	/**
 	 * @return string
 	 */
 	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', static::ENDPOINT_KEY, str_replace( '.', '', $this->getParam( 'version' ) ) );
+		return sprintf( '%s/%s', static::ENDPOINT_KEY, str_replace( '.', '', $this->getParam( 'filter_version' ) ) );
 	}
 }
