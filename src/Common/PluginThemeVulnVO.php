@@ -10,7 +10,7 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common;
  * @property bool    $popular
  * @property array[] $vulnerabilities
  */
-class AssetVulnVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
+class PluginThemeVulnVO extends \FernleafSystems\ApiWrappers\Base\BaseVO {
 
 	/**
 	 * @return int

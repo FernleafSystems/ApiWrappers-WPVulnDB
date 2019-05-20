@@ -8,6 +8,6 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb;
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
-	const API_URL = 'https://wpvulndb.com/api/%s';
+	const API_URL = 'https://wpvulndb.com/api/v%s';
 	const API_VERSION = '3';
 }
