@@ -1,0 +1,25 @@
+{
+  "name":              "fernleafsystems/apiwrappers-wpvulndb",
+  "authors":           [
+    {
+      "name":     "Paul Goodchild",
+      "email":    "paul@paulgoodchild.me",
+      "homepage": "https://paulgoodchild.me"
+    }
+  ],
+  "repositories":      [
+  ],
+  "require":           {
+    "php":                              ">=5.6.0",
+    "fernleafsystems/apiwrappers-base": "^1.1.8"
+  },
+  "require-dev":       {
+  },
+  "minimum-stability": "dev",
+  "prefer-stable":     true,
+  "autoload":          {
+    "psr-4": {
+      "FernleafSystems\\ApiWrappers\\WpVulnDb\\": "src"
+    }
+  }
+}
