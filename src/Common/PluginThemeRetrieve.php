@@ -37,7 +37,6 @@ class PluginThemeRetrieve extends Api {
 					$oVo->getVulns(),
 					function ( $oVuln ) use ( $sFilterVersion ) {
 						/** @var VulnVO $oVuln */
-						var_dump( $oVuln->fixed_in.' vs '.$sFilterVersion );
 						return empty( $oVuln->fixed_in ) || version_compare( $sFilterVersion, $oVuln->fixed_in, '<' );
 					}
 				)
