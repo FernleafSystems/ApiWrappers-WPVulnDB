@@ -21,12 +21,15 @@ class PluginThemeRetrieve extends Api {
 
 		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
-			$oVo = $this->getVO();
-			$oVo->applyFromArray( $this->getDecodedResponseBody()[ $this->getParam( 'filter_slug' ) ] );
+			$aResp = $this->getDecodedResponseBody();
+			if ( !empty( $aResp[ $this->getParam( 'filter_slug' ) ] ) ) {
+				$oVo = $this->getVO();
+				$oVo->applyFromArray( $aResp[ $this->getParam( 'filter_slug' ) ] );
+			}
 		}
 
 		$sFilterVersion = $this->getParam( 'filter_version' );
-		if ( !empty( $oVo ) && !empty( $sFilterVersion ) ) {
+		if ( $oVo instanceof PluginThemeVulnVO && !empty( $sFilterVersion ) ) {
 
 			$oVo->vulnerabilities = array_map(
 				function ( $oVuln ) {
