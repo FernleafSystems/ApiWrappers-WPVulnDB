@@ -3,7 +3,6 @@
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Themes;
 
 use FernleafSystems\ApiWrappers\WpVulnDb\Common\PluginThemeRetrieve;
-use FernleafSystems\ApiWrappers\WpVulnDb\Common\PluginThemeVulnVO;
 
 /**
  * Class Retrieve
