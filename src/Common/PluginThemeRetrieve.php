@@ -2,7 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Common;
 
-use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\ApiWrappers\WpVulnDb\Api;
 
 /**
@@ -14,39 +13,42 @@ class PluginThemeRetrieve extends Api {
 	const ENDPOINT_KEY = '';
 
 	/**
-	 * @return BaseVO|null
+	 * @return PluginThemeVulnVO|null
 	 */
 	public function retrieve() {
-		$oVo = null;
+		$oVO = null;
 
 		$this->req();
 		if ( $this->isLastRequestSuccess() ) {
 			$aResp = $this->getDecodedResponseBody();
 			if ( !empty( $aResp[ $this->getParam( 'filter_slug' ) ] ) ) {
-				$oVo = $this->getVO();
-				$oVo->applyFromArray( $aResp[ $this->getParam( 'filter_slug' ) ] );
+				$oVO = $this->getVO();
+				$oVO->applyFromArray( $aResp[ $this->getParam( 'filter_slug' ) ] );
 			}
 		}
 
-		$sFilterVersion = $this->getParam( 'filter_version' );
-		if ( $oVo instanceof PluginThemeVulnVO && !empty( $sFilterVersion ) ) {
+		if ( $oVO instanceof PluginThemeVulnVO ) {
 
-			$oVo->vulnerabilities = array_map(
-				function ( $oVuln ) {
-					/** @var VulnVO $oVuln */
-					return $oVuln->getRawDataAsArray();
-				},
-				array_filter(
-					$oVo->getVulns(),
-					function ( $oVuln ) use ( $sFilterVersion ) {
-						/** @var VulnVO $oVuln */
-						return empty( $oVuln->fixed_in ) || version_compare( $sFilterVersion, $oVuln->fixed_in, '<' );
-					}
-				)
-			);
+			$oVO->asset_type = rtrim( static::ENDPOINT_KEY, 's' );
+
+			$sFilterVersion = $this->getParam( 'filter_version' );
+			if ( !empty( $sFilterVersion ) ) {
+
+				$oVO->vulnerabilities = array_map(
+					function ( $vuln ) {
+						return $vuln->getRawDataAsArray();
+					},
+					array_filter(
+						$oVO->getVulns(),
+						function ( $vuln ) use ( $sFilterVersion ) {
+							return empty( $vuln->fixed_in ) || version_compare( $sFilterVersion, $vuln->fixed_in, '<' );
+						}
+					)
+				);
+			}
 		}
 
-		return $oVo;
+		return $oVO;
 	}
 
 	/**

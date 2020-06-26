@@ -6,6 +6,7 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common;
  * Class AssetVulnVO
  * @package FernleafSystems\ApiWrappers\WpVulnDb\Plugins
  * @property string  $latest_version
+ * @property string  $asset_type        - plugin / theme
  * @property string  $last_updated      - e.g 2015-09-10T09:16:00.000Z
  * @property bool    $popular
  * @property array[] $vulnerabilities
