@@ -29,6 +29,7 @@ class PluginThemeRetrieve extends Api {
 
 		if ( $oVO instanceof PluginThemeVulnVO ) {
 
+			$oVO->asset_slug = $this->getParam( 'filter_slug' );
 			$oVO->asset_type = rtrim( static::ENDPOINT_KEY, 's' );
 
 			$sFilterVersion = $this->getParam( 'filter_version' );
