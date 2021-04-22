@@ -4,7 +4,8 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb;
 
 /**
  * Class Connection
- * @package FernleafSystems\ApiWrappers\StatusCake
+ * @package FernleafSystems\ApiWrappers\WpVulnDb
+ * @deprecated 2.0
  */
 class Connection extends \FernleafSystems\ApiWrappers\Base\Connection {
 
