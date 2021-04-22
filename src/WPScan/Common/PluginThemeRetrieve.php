@@ -37,7 +37,7 @@ class PluginThemeRetrieve extends Api {
 
 				$VO->vulnerabilities = array_map(
 					function ( $vuln ) {
-						return $vuln->getRawDataAsArray();
+						return $vuln->getRawData();
 					},
 					array_filter(
 						$VO->getVulns(),
