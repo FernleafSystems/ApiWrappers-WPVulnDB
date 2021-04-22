@@ -14,4 +14,19 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  */
 class LookupVO extends DynPropertiesClass {
 
+	public function __get( string $key ) {
+
+		switch ( $key ) {
+			case 'asset_slug':
+				if ( $this->asset_type === Constants::ASSET_TYPE_WP ) {
+					$value = 'wordpress';
+				}
+				break;
+			default:
+				$value = parent::__get( $key );
+				break;
+		}
+
+		return $value;
+	}
 }

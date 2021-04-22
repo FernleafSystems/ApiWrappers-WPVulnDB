@@ -30,9 +30,8 @@ class PluginThemeRetrieve extends Api {
 
 		if ( $this->req()->isLastRequestSuccess() ) {
 			$response = $this->getDecodedResponseBody();
-			if ( !empty( $response[ $this->getParam( 'filter_slug' ) ] ) ) {
-				$VO = $this->getVO();
-				$VO->applyFromArray( $response[ $this->getParam( 'filter_slug' ) ] );
+			if ( !empty( $response[ $lookup->asset_slug ] ) ) {
+				$VO = $this->getVO()->applyFromArray( $response[ $lookup->asset_slug ] );
 			}
 		}
 
@@ -44,9 +43,7 @@ class PluginThemeRetrieve extends Api {
 			if ( !empty( $lookup->asset_version ) ) {
 
 				$VO->vulnerabilities = array_map(
-					function ( $vuln ) {
-						return $vuln->getRawData();
-					},
+					fn( $vuln ) => $vuln->getRawData(),
 					array_filter(
 						$VO->getVulns(),
 						function ( $vuln ) use ( $lookup ) {
@@ -59,6 +56,20 @@ class PluginThemeRetrieve extends Api {
 		}
 
 		return $VO;
+	}
+
+	/**
+	 * @return PluginThemeVulnVO
+	 */
+	protected function getVO() {
+		return new PluginThemeVulnVO();
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getUrlEndpoint() {
+		return sprintf( '%s/%s', static::ENDPOINT_KEY, $this->getLookupVO()->asset_slug );
 	}
 
 	/**
@@ -77,19 +88,5 @@ class PluginThemeRetrieve extends Api {
 	 */
 	public function filterBySlug( $sSlug ) {
 		return $this->setParam( 'filter_slug', $sSlug );
-	}
-
-	/**
-	 * @return PluginThemeVulnVO
-	 */
-	protected function getVO() {
-		return new PluginThemeVulnVO();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
-		return sprintf( '%s/%s', static::ENDPOINT_KEY, $this->getLookupVO()->asset_slug );
 	}
 }

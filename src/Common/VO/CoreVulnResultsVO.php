@@ -5,10 +5,9 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
 /**
  * Class CoreVulnVO
  * @package FernleafSystems\ApiWrappers\WpVulnDb\CoreVulnVO\Core
- * @property string  $changelog_url
- * @property string  $status
- * @property string  $release_date
- * @property array[] $vulnerabilities
+ * @property string $changelog_url
+ * @property string $status
+ * @property int    $released_at
  */
 class CoreVulnResultsVO extends BaseVulnResultsVO {
 
