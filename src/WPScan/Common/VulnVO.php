@@ -1,12 +1,12 @@
 <?php
 
-namespace FernleafSystems\ApiWrappers\WpVulnDb\Common;
+namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
  * Class VulnVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\Plugins
+ * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Plugins
  * @property int    $id
  * @property string $title
  * @property string $created_at
@@ -18,4 +18,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  */
 class VulnVO extends DynPropertiesClass {
 
+	public function isValid() :bool {
+		return count( $this->getRawData() ) > 0;
+	}
 }
