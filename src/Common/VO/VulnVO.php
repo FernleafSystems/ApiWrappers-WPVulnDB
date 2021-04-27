@@ -9,6 +9,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @package FernleafSystems\ApiWrappers\WpVulnDb\Common
  * @property string|int $id
  * @property string     $title
+ * @property string     $description
  * @property string     $vuln_type
  * @property string     $fixed_in
  * @property array      $references
