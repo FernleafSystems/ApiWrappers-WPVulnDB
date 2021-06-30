@@ -44,9 +44,11 @@ class Retrieve extends Api {
 
 	protected function getVO() {
 		switch ( $this->getLookupVO()->asset_type ) {
+
 			case Constants::ASSET_TYPE_WP:
 				$vo = new CoreVulnResultsVO();
 				break;
+
 			case Constants::ASSET_TYPE_PLUGIN:
 			case Constants::ASSET_TYPE_THEME:
 			default:

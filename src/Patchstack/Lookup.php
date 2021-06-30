@@ -2,19 +2,17 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Patchstack;
 
-use FernleafSystems\ApiWrappers\WpVulnDb\Common\{
-	VO\BaseVulnResultsVO,
-	VO\CoreVulnResultsVO,
-	VO\PluginThemeVulnResultsVO
-};
-use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\InvalidConnectionException;
+use FernleafSystems\ApiWrappers\WpVulnDb\Common\VO\BaseVulnResultsVO;
 
 class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 
 	/**
-	 * @return CoreVulnResultsVO|PluginThemeVulnResultsVO
-	 * @throws InvalidConnectionException
+	 * @inheritDoc
 	 */
 	public function run() :BaseVulnResultsVO {
+		return ( new Retrieve() )
+			->setConnection( $this->getConnection() )
+			->setLookupVO( $this->getLookup() )
+			->retrieve();
 	}
 }

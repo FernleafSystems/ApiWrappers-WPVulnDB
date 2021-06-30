@@ -21,8 +21,7 @@ use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\{
 class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 
 	/**
-	 * @return CoreVulnResultsVO|PluginThemeVulnResultsVO
-	 * @throws InvalidConnectionException
+	 * @inheritDoc
 	 */
 	public function run() :BaseVulnResultsVO {
 
