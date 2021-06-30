@@ -9,7 +9,10 @@ use FernleafSystems\ApiWrappers\WpVulnDb\Common\{
 	VO\PluginThemeVulnResultsVO,
 	VO\VulnVO
 };
-use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\InvalidConnectionException;
+use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\{
+	InvalidAssetTypeException,
+	InvalidConnectionException
+};
 use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\{
 	Common\PluginThemeVulnVO,
 	Core
@@ -22,7 +25,9 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 	 * @throws InvalidConnectionException
 	 */
 	public function run() :BaseVulnResultsVO {
+
 		$look = $this->getLookup();
+
 		switch ( $look->asset_type ) {
 
 			case Constants::ASSET_TYPE_WP:
@@ -36,11 +41,16 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 			case Constants::ASSET_TYPE_THEME:
 				$retriever = new Themes\Retrieve();
 				break;
+
+			default:
+				throw new InvalidAssetTypeException( 'Invalid type: '.var_export( $look->asset_type, true ) );
 		}
 
-		$result = $retriever->setConnection( $this->getConnection() )->retrieve();
-
-		return $this->convertResultToCommon( $result );
+		return $this->convertResultToCommon(
+			$retriever->setConnection( $this->getConnection() )
+					  ->setLookupVO( $look )
+					  ->retrieve()
+		);
 	}
 
 	/**
@@ -70,6 +80,7 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 				$new->disclosed_at = strtotime( $vul->published_date );
 				$new->created_at = strtotime( $vul->created_at );
 				$new->updated_at = strtotime( $vul->updated_at );
+				return $new;
 			},
 			$result->getVulns()
 		);
