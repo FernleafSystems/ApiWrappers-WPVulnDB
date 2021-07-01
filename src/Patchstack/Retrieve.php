@@ -39,6 +39,8 @@ class Retrieve extends Api {
 			$vulns->vulnerabilities = $items;
 		}
 
+		$vulns->provider = 'patchstack';
+
 		return $vulns;
 	}
 

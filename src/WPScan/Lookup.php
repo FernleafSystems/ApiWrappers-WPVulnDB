@@ -86,6 +86,8 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 			empty( $result ) ? [] : $result->getVulns()
 		);
 
+		$commonResult->provider = 'wpscan';
+
 		return $commonResult;
 	}
 }

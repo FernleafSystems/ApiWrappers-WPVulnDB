@@ -8,6 +8,7 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
  * @property string   $asset_type        - plugin / theme / core
  * @property string   $latest_version
  * @property VulnVO[] $vulnerabilities   - should be stored as raw array for conversion on-demand
+ * @property string   $provider          - one of wpscan, patchstack
  * @property LookupVO $lookup
  */
 class BaseVulnResultsVO extends \FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass {
