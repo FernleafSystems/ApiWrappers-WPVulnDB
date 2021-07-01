@@ -57,16 +57,19 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 	private function convertResultToCommon( $result ) :?BaseVulnResultsVO {
 		if ( $this->getLookup()->asset_type === Constants::ASSET_TYPE_WP ) {
 			$commonResult = new CoreVulnResultsVO();
-			$commonResult->changelog_url = $result->changelog_url;
-			$commonResult->released_at = strtotime( $result->release_date );
-			$commonResult->status = $result->status;
-			$commonResult->latest_version = $result->latest_version;
+			if ( !empty( $result ) ) {
+				$commonResult->changelog_url = $result->changelog_url;
+				$commonResult->released_at = strtotime( $result->release_date );
+				$commonResult->status = $result->status;
+				$commonResult->latest_version = $result->latest_version;
+			}
 		}
 		else {
 			$commonResult = new PluginThemeVulnResultsVO();
 		}
 
 		$commonResult->lookup = $this->getLookup();
+
 		$commonResult->vulnerabilities = array_map(
 			function ( $vul ) {
 				$new = new VulnVO();
@@ -80,7 +83,7 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 				$new->updated_at = strtotime( $vul->updated_at );
 				return $new->getRawData();
 			},
-			$result->getVulns()
+			empty( $result ) ? [] : $result->getVulns()
 		);
 
 		return $commonResult;
