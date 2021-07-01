@@ -76,6 +76,7 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 				$new->id = $vul->id;
 				$new->title = $vul->title;
 				$new->fixed_in = $vul->fixed_in;
+				$new->vuln_type = $vul->vuln_type;
 				$new->references = $vul->references;
 				$new->published_at = strtotime( $vul->published_date );
 				$new->disclosed_at = strtotime( $vul->published_date );
