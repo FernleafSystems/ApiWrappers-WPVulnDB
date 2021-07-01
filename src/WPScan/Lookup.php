@@ -10,8 +10,7 @@ use FernleafSystems\ApiWrappers\WpVulnDb\Common\{
 	VO\VulnVO
 };
 use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\{
-	InvalidAssetTypeException,
-	InvalidConnectionException
+	InvalidAssetTypeException
 };
 use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\{
 	Common\PluginThemeVulnVO,
@@ -79,7 +78,7 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 				$new->disclosed_at = strtotime( $vul->published_date );
 				$new->created_at = strtotime( $vul->created_at );
 				$new->updated_at = strtotime( $vul->updated_at );
-				return $new;
+				return $new->getRawData();
 			},
 			$result->getVulns()
 		);
