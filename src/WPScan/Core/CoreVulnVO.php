@@ -24,10 +24,10 @@ class CoreVulnVO extends DynPropertiesClass {
 	 */
 	public function getVulns() {
 		return array_map(
-			function ( $aV ) {
-				return ( new VulnVO() )->applyFromArray( $aV );
+			function ( $v ) {
+				return ( new VulnVO() )->applyFromArray( $v );
 			},
-			$this->vulnerabilities
+			is_array( $this->vulnerabilities ) ? $this->vulnerabilities : []
 		);
 	}
 }

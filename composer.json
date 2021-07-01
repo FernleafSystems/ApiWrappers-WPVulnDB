@@ -12,7 +12,8 @@
   ],
   "require":           {
     "php":                              ">=7.4",
-    "fernleafsystems/apiwrappers-base": "^1.1.8"
+    "fernleafsystems/apiwrappers-base": "^1.1.8",
+    "symfony/polyfill-php80":           "^1.0"
   },
   "require-dev":       {
   },
