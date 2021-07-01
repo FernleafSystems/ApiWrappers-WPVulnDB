@@ -35,7 +35,7 @@ class PluginThemeVulnVO extends DynPropertiesClass {
 			function ( $v ) {
 				return ( new VulnVO() )->applyFromArray( $v );
 			},
-			$this->vulnerabilities
+			is_array( $this->vulnerabilities ) ? $this->vulnerabilities : []
 		);
 	}
 }

@@ -2,10 +2,6 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Themes;
 
-/**
- * Class Base
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Themes
- */
 class Base extends \FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Api {
 
 	const ENDPOINT_KEY = 'themes';
