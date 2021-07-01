@@ -11,6 +11,10 @@ class Api extends BaseApi {
 
 	const REQUEST_METHOD = 'get';
 
+	protected function preFlight() {
+		$this->setRequestHeader( 'PSKey', $this->getConnection()->api_key );
+	}
+
 	protected function extractVulnerabilitiesFromResponse() :array {
 		return $this->getDecodedResponseBody()[ 'vulnerabilities' ];
 	}
