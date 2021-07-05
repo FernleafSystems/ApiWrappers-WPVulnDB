@@ -19,9 +19,14 @@ class Retrieve extends Base {
 			$this->setLookupVO( $lookup );
 		}
 
-		return $this->req()->isLastRequestSuccess() ?
-			$this->getVO()->applyFromArray( $this->getDecodedResponseBody()[ $lookup->asset_version ] )
-			: null;
+		$vul = null;
+		if ( $this->req()->isLastRequestSuccess() ) {
+			$decoded = $this->getDecodedResponseBody();
+			if ( !empty( $decoded[ $lookup->asset_version ] ) ) {
+				$vul = $this->getVO()->applyFromArray( $decoded[ $lookup->asset_version ] );
+			}
+		}
+		return $vul;
 	}
 
 	/**
