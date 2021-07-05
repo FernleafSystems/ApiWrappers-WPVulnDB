@@ -43,7 +43,7 @@ class PluginThemeRetrieve extends Api {
 			if ( !empty( $lookup->asset_version ) ) {
 
 				$VO->vulnerabilities = array_map(
-					fn( $vuln ) => $vuln->getRawData(),
+					fn( $vul ) => $vul->getRawData(),
 					array_filter(
 						$VO->getVulns(),
 						function ( $vuln ) use ( $lookup ) {
