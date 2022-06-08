@@ -6,8 +6,6 @@ use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common\VulnVO;
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class CoreVulnVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Core
  * @property string  $changelog_url
  * @property string  $status
  * @property string  $release_date

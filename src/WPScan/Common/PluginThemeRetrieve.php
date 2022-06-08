@@ -5,10 +5,6 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 use FernleafSystems\ApiWrappers\WpVulnDb\Common\VO\LookupVO;
 use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Api;
 
-/**
- * Class PluginThemeRetrieve
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common
- */
 class PluginThemeRetrieve extends Api {
 
 	const ENDPOINT_KEY = '';
