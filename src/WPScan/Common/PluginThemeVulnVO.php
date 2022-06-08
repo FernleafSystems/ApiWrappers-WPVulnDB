@@ -5,8 +5,6 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class AssetVulnVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Plugins
  * @property string  $latest_version
  * @property string  $asset_slug
  * @property string  $asset_type        - plugin / theme

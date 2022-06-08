@@ -3,8 +3,6 @@
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
 
 /**
- * Class BaseVulnResultsVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\Common\VO
  * @property string   $asset_type        - plugin / theme / core
  * @property string   $latest_version
  * @property VulnVO[] $vulnerabilities   - should be stored as raw array for conversion on-demand
