@@ -16,11 +16,10 @@ class Retrieve extends Api {
 	 * @return BaseVulnResultsVO|CoreVulnResultsVO|PluginThemeVulnResultsVO|null
 	 */
 	public function retrieve() :?BaseVulnResultsVO {
-		$vulns = null;
+		$vulns = $this->getVO();
+		$vulns->lookup = $this->getLookupVO();
 
 		if ( $this->req()->isLastRequestSuccess() ) {
-			$vulns = $this->getVO();
-			$vulns->lookup = $this->getLookupVO();
 			$items = [];
 			foreach ( $this->extractVulnerabilitiesFromResponse() as $vulnItem ) {
 				$vuln = new VulnVO();
@@ -38,8 +37,10 @@ class Retrieve extends Api {
 			}
 			$vulns->vulnerabilities = $items;
 		}
-
-		$vulns->provider = 'patchstack';
+		else {
+			error_log( var_export( $vulns->getRawData(), true ) );
+			error_log( var_export( $this->getRawDataAsArray(), true ) );
+		}
 
 		return $vulns;
 	}
@@ -57,6 +58,7 @@ class Retrieve extends Api {
 				$vo = new PluginThemeVulnResultsVO();
 				break;
 		}
+		$vo->provider = 'patchstack';
 		return $vo;
 	}
 
