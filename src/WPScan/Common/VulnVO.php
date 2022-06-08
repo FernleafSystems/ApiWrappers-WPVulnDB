@@ -5,8 +5,6 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class VulnVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Plugins
  * @property int    $id
  * @property string $title
  * @property string $created_at

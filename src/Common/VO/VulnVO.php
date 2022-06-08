@@ -5,8 +5,6 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
- * Class VulnVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\Common
  * @property string|int $id
  * @property string     $title
  * @property string     $description

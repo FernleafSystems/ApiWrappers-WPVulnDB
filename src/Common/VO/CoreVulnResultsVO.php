@@ -3,8 +3,6 @@
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
 
 /**
- * Class CoreVulnResultsVO
- * @package FernleafSystems\ApiWrappers\WpVulnDb\Common\VO
  * @property string $changelog_url
  * @property string $status
  * @property int    $released_at
