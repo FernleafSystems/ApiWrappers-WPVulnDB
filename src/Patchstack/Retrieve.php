@@ -33,7 +33,7 @@ class Retrieve extends Api {
 				];
 				$vuln->disclosed_at = strtotime( $vulnItem[ 'disclosure_date' ] );
 				$vuln->created_at = strtotime( $vulnItem[ 'created_at' ] );
-				$items[] = $vuln->getRawData();
+				$items[] = $vuln;
 			}
 			$vulns->vulnerabilities = $items;
 		}

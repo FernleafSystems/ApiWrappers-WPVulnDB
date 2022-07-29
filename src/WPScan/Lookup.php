@@ -72,17 +72,17 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 
 		$commonResult->vulnerabilities = array_map(
 			function ( $vul ) {
-				$new = new VulnVO();
-				$new->id = $vul->id;
-				$new->title = $vul->title;
-				$new->fixed_in = $vul->fixed_in;
-				$new->vuln_type = $vul->vuln_type;
-				$new->references = $vul->references;
-				$new->published_at = strtotime( $vul->published_date );
-				$new->disclosed_at = strtotime( $vul->published_date );
-				$new->created_at = strtotime( $vul->created_at );
-				$new->updated_at = strtotime( $vul->updated_at );
-				return $new->getRawData();
+				$vuln = new VulnVO();
+				$vuln->id = $vul->id;
+				$vuln->title = $vul->title;
+				$vuln->fixed_in = $vul->fixed_in;
+				$vuln->vuln_type = $vul->vuln_type;
+				$vuln->references = $vul->references;
+				$vuln->published_at = strtotime( $vul->published_date );
+				$vuln->disclosed_at = strtotime( $vul->published_date );
+				$vuln->created_at = strtotime( $vul->created_at );
+				$vuln->updated_at = strtotime( $vul->updated_at );
+				return $vuln;
 			},
 			empty( $result ) ? [] : $result->getVulns()
 		);

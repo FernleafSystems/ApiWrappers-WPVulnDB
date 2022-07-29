@@ -16,7 +16,9 @@ class BaseVulnResultsVO extends \FernleafSystems\Utilities\Data\Adapter\DynPrope
 
 		switch ( $key ) {
 			case 'vulnerabilities':
-				$value = is_array( $value ) ? $this->buildVulns( $value ) : [];
+				$value = array_filter( array_map( function ( $v ) {
+					return is_array( $v ) ? ( new VulnVO() )->applyFromArray( $v ) : null;
+				}, is_array( $value ) ? $value : [] ) );
 				break;
 			default:
 				break;
@@ -25,7 +27,17 @@ class BaseVulnResultsVO extends \FernleafSystems\Utilities\Data\Adapter\DynPrope
 		return $value;
 	}
 
-	private function buildVulns( array $raw ) :array {
-		return array_map( fn( $v ) => ( new VulnVO() )->applyFromArray( $v ), $raw );
+	public function __set( string $key, $value ) {
+		switch ( $key ) {
+			case 'vulnerabilities':
+				$value = array_filter( array_map( function ( $v ) {
+					/** @var VulnVO $v */
+					return $v instanceof VulnVO ? $v->getRawData() : null;
+				}, is_array( $value ) ? $value : [] ) );
+				break;
+			default:
+				break;
+		}
+		parent::__set( $key, $value );
 	}
 }
