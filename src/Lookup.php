@@ -42,10 +42,13 @@ class Lookup {
 				->setConnection( $conn )
 				->run();
 		}
-		else {
+		elseif ( $conn instanceof Patchstack\Connection ) {
 			$result = ( new Patchstack\Lookup( $this->getLookup() ) )
 				->setConnection( $conn )
 				->run();
+		}
+		else {
+			throw new InvalidConnectionException( sprintf( 'Connection type: %s', get_class( $conn ) ) );
 		}
 
 		return $result;
