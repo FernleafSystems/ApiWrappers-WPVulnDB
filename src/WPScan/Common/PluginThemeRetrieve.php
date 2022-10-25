@@ -17,8 +17,8 @@ class PluginThemeRetrieve extends Api {
 		else {
 			$lookup = new LookupVO();
 			$lookup->asset_type = rtrim( static::ENDPOINT_KEY, 's' );
-			$lookup->asset_slug = $this->getParam( 'filter_slug' );
-			$lookup->asset_version = $this->getParam( 'filter_version' );
+			$lookup->asset_slug = $this->filter_slug;
+			$lookup->asset_version = $this->filter_version;
 			$this->setLookupVO( $lookup );
 		}
 
@@ -54,35 +54,11 @@ class PluginThemeRetrieve extends Api {
 		return $VO;
 	}
 
-	/**
-	 * @return PluginThemeVulnVO
-	 */
-	protected function getVO() {
+	protected function getVO() :PluginThemeVulnVO {
 		return new PluginThemeVulnVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', static::ENDPOINT_KEY, $this->getLookupVO()->asset_slug );
-	}
-
-	/**
-	 * @param string $sVersion
-	 * @return $this
-	 * @deprecated 2.0 - use lookupVO
-	 */
-	public function filterByVersion( $sVersion ) {
-		return $this->setParam( 'filter_version', ltrim( trim( $sVersion ), 'v' ) );
-	}
-
-	/**
-	 * @param string $sSlug
-	 * @return $this
-	 * @deprecated 2.0 - use lookupVO
-	 */
-	public function filterBySlug( $sSlug ) {
-		return $this->setParam( 'filter_slug', $sSlug );
 	}
 }

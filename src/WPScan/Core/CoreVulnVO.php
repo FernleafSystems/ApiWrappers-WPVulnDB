@@ -2,8 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Core;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common\VulnVO;
-use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
  * @property string  $changelog_url
@@ -11,7 +11,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @property string  $release_date
  * @property array[] $vulnerabilities
  */
-class CoreVulnVO extends DynPropertiesClass {
+class CoreVulnVO extends BaseVO {
 
 	public function isValid() :bool {
 		return count( $this->getRawData() ) > 0;
@@ -20,7 +20,7 @@ class CoreVulnVO extends DynPropertiesClass {
 	/**
 	 * @return VulnVO[]
 	 */
-	public function getVulns() {
+	public function getVulns() :array {
 		return array_map(
 			function ( $v ) {
 				return ( new VulnVO() )->applyFromArray( $v );

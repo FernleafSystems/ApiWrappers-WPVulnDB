@@ -2,6 +2,8 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
+
 /**
  * @property string   $asset_type        - plugin / theme / core
  * @property string   $latest_version
@@ -9,7 +11,7 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\Common\VO;
  * @property string   $provider          - one of wpscan, patchstack
  * @property LookupVO $lookup
  */
-class BaseVulnResultsVO extends \FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass {
+class BaseVulnResultsVO extends BaseVO {
 
 	public function __get( string $key ) {
 		$value = parent::__get( $key );

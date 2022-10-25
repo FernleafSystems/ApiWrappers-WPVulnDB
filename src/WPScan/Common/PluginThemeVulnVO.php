@@ -2,6 +2,7 @@
 
 namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 
+use FernleafSystems\ApiWrappers\Base\BaseVO;
 use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
 
 /**
@@ -12,7 +13,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @property bool    $popular
  * @property array[] $vulnerabilities
  */
-class PluginThemeVulnVO extends DynPropertiesClass {
+class PluginThemeVulnVO extends BaseVO {
 
 	public function isValid() :bool {
 		return count( $this->getRawData() ) > 0;
@@ -28,7 +29,7 @@ class PluginThemeVulnVO extends DynPropertiesClass {
 	/**
 	 * @return VulnVO[]
 	 */
-	public function getVulns() {
+	public function getVulns() :array {
 		return array_map(
 			function ( $v ) {
 				return ( new VulnVO() )->applyFromArray( $v );
