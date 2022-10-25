@@ -4,40 +4,25 @@ namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Common;
 
 use FernleafSystems\ApiWrappers\WpVulnDb\WPScan;
 
-/**
- * Trait LatestRetrieve
- * @package FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Plugins
- */
 trait LatestRetrieve {
 
 	/**
-	 * @return WpVulnDb\Common\VulnVO[]
+	 * @return WPScan\Common\VulnVO[]
 	 */
-	public function retrieve() {
-		$aVulns = [];
-		$aData = $this->req()->isLastRequestSuccess() ? $this->getDecodedResponseBody() : null;
-		if ( is_array( $aData ) ) {
-			$aVulns = array_map(
-				function ( $aVuln ) {
-					return $this->getVO()->applyFromArray( $aVuln );
-				},
-				$aData
-			);
-		}
-		return $aVulns;
+	public function retrieve() :array {
+		return array_map(
+			function ( $v ) {
+				return $this->getVO()->applyFromArray( $v );
+			},
+			$this->req()->isLastRequestSuccess() ? $this->getDecodedResponseBody() : []
+		);
 	}
 
-	/**
-	 * @return WpVulnDb\Common\VulnVO
-	 */
-	protected function getVO() {
-		return new WpVulnDb\Common\VulnVO();
+	protected function getVO() :WPScan\Common\VulnVO {
+		return new WPScan\Common\VulnVO();
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		return sprintf( '%s/%s', parent::getUrlEndpoint(), 'latest' );
 	}
 }

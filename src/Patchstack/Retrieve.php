@@ -39,13 +39,12 @@ class Retrieve extends Api {
 		}
 		else {
 			error_log( var_export( $vulns->getRawData(), true ) );
-			error_log( var_export( $this->getRawDataAsArray(), true ) );
 		}
 
 		return $vulns;
 	}
 
-	protected function getVO() {
+	protected function getVO() :BaseVulnResultsVO {
 		switch ( $this->getLookupVO()->asset_type ) {
 
 			case Constants::ASSET_TYPE_WP:
@@ -62,10 +61,7 @@ class Retrieve extends Api {
 		return $vo;
 	}
 
-	/**
-	 * @return string
-	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string {
 		$lookup = $this->getLookupVO();
 		return sprintf( '%s/%s/%s', $lookup->asset_type, $lookup->asset_slug, $lookup->asset_version );
 	}

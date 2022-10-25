@@ -13,7 +13,7 @@ class Base extends \FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Api {
 	/**
 	 * @return string
 	 */
-	protected function getUrlEndpoint() {
+	protected function getUrlEndpoint() :string{
 		return static::ENDPOINT_KEY;
 	}
 }
