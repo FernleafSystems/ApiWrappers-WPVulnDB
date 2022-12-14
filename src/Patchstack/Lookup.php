@@ -6,9 +6,6 @@ use FernleafSystems\ApiWrappers\WpVulnDb\Common\VO\BaseVulnResultsVO;
 
 class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 
-	/**
-	 * @inheritDoc
-	 */
 	public function run() :BaseVulnResultsVO {
 		return ( new Retrieve() )
 			->setConnection( $this->getConnection() )
