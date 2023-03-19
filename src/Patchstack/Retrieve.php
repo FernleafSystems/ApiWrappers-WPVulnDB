@@ -28,6 +28,8 @@ class Retrieve extends Api {
 				$vuln->description = $vulnItem[ 'description' ];
 				$vuln->vuln_type = $vulnItem[ 'vuln_type' ];
 				$vuln->fixed_in = $vulnItem[ 'fixed_in' ] ?? '';
+				$vuln->affected_in = $vulnItem[ 'affected_in' ] ?? '';
+				$vuln->patched_in_ranges = $vulnItem[ 'patched_in_ranges' ] ?? [];
 				$vuln->references = [
 					$vulnItem[ 'direct_url' ]
 				];
