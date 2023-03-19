@@ -10,6 +10,8 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @property string     $description
  * @property string     $vuln_type
  * @property string     $fixed_in
+ * @property string     $affected_in
+ * @property array[]    $patched_in_ranges
  * @property array      $references
  * @property int        $published_at
  * @property int        $disclosed_at
