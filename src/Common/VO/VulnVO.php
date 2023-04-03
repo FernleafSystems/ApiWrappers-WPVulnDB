@@ -12,6 +12,7 @@ use FernleafSystems\Utilities\Data\Adapter\DynPropertiesClass;
  * @property string     $fixed_in
  * @property string     $affected_in
  * @property array[]    $patched_in_ranges
+ * @property array      $operator
  * @property array      $references
  * @property int        $published_at
  * @property int        $disclosed_at
@@ -28,9 +29,15 @@ class VulnVO extends DynPropertiesClass {
 		}
 
 		switch ( $key ) {
+			case 'operator':
 			case 'references':
 				if ( !is_array( $value ) ) {
 					$value = [];
+				}
+				break;
+			case 'id':
+				if ( empty( $value ) ) {
+					$value = hash( 'sha256', $this->title.serialize( $this->operator ) );
 				}
 				break;
 			default:

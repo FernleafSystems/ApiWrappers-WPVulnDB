@@ -3,26 +3,20 @@
 namespace FernleafSystems\ApiWrappers\WpVulnDb\WPScan;
 
 use FernleafSystems\ApiWrappers\WpVulnDb\Common\{
-	VO\BaseVulnResultsVO,
 	VO\Constants,
 	VO\CoreVulnResultsVO,
 	VO\PluginThemeVulnResultsVO,
 	VO\VulnVO
 };
-use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\{
-	InvalidAssetTypeException
-};
-use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\{
-	Common\PluginThemeVulnVO,
-	Core
-};
+use FernleafSystems\ApiWrappers\WpVulnDb\Exceptions\InvalidAssetTypeException;
+use FernleafSystems\ApiWrappers\WpVulnDb\WPScan\Core;
 
 class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 
 	/**
 	 * @inheritDoc
 	 */
-	public function run() :BaseVulnResultsVO {
+	public function run() :null|CoreVulnResultsVO|PluginThemeVulnResultsVO {
 
 		$look = $this->getLookup();
 
@@ -51,10 +45,7 @@ class Lookup extends \FernleafSystems\ApiWrappers\WpVulnDb\Lookup {
 		);
 	}
 
-	/**
-	 * @param Core\CoreVulnVO|PluginThemeVulnVO $result
-	 */
-	private function convertResultToCommon( $result ) :?BaseVulnResultsVO {
+	private function convertResultToCommon( $result ) :null|CoreVulnResultsVO|PluginThemeVulnResultsVO {
 		if ( $this->getLookup()->asset_type === Constants::ASSET_TYPE_WP ) {
 			$commonResult = new CoreVulnResultsVO();
 			if ( !empty( $result ) ) {

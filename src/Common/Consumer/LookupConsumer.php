@@ -16,7 +16,7 @@ trait LookupConsumer {
 		return !empty( $this->lookupVO );
 	}
 
-	public function setLookupVO( LookupVO $lookup ) :self {
+	public function setLookupVO( LookupVO $lookup ) :static {
 		$this->lookupVO = $lookup;
 		return $this;
 	}

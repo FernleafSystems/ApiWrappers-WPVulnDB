@@ -10,4 +10,5 @@ class Constants {
 	public const ASSET_TYPES = [ self::ASSET_TYPE_WP, self::ASSET_TYPE_PLUGIN, self::ASSET_TYPE_THEME ];
 	public const PROVIDER_WPSCAN = 'wpscan';
 	public const PROVIDER_PATCHSTACK = 'patchstack';
+	public const PROVIDER_WPVDB = 'wpvdb';
 }

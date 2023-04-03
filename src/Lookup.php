@@ -32,7 +32,7 @@ class Lookup {
 	 * @throws InvalidConnectionException
 	 * @throws InvalidAssetTypeException
 	 */
-	public function run() :BaseVulnResultsVO {
+	public function run() :null|CoreVulnResultsVO|PluginThemeVulnResultsVO {
 		$this->verifyRequest();
 
 		$conn = $this->getConnection();
@@ -44,6 +44,11 @@ class Lookup {
 		}
 		elseif ( $conn instanceof Patchstack\Connection ) {
 			$result = ( new Patchstack\Lookup( $this->getLookup() ) )
+				->setConnection( $conn )
+				->run();
+		}
+		elseif ( $conn instanceof WPVDB\Connection ) {
+			$result = ( new WPVDB\Lookup( $this->getLookup() ) )
 				->setConnection( $conn )
 				->run();
 		}

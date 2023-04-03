@@ -10,8 +10,8 @@
   ],
   "repositories":      [
   ],
-  "require":           {
-    "php":                              ">=7.4",
+  "require": {
+    "php":                              "^8.2",
     "fernleafsystems/apiwrappers-base": "^2.1",
     "symfony/polyfill-php80":           "^1.0"
   },
